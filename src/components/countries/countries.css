@@ -10,3 +10,6 @@
 .non-visited{
     background-color: skyblue;
 }
+.flag-container img{
+    width: 100px;
+}

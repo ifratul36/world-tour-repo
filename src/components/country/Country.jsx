@@ -1,8 +1,10 @@
 
 import { useState } from "react";
 import "./country.css";
+import countrydetail from "../countryDetail/CountryDetail";
+import CountryDetail from "../countryDetail/CountryDetail";
 
-const Country = ({country, handleVisitedCountry}) => {
+const Country = ({country, handleVisitedCountry, handleVisitedFlags}) => {
     console.log(country);
     const {name, flags, area, capital, population, cca3} = country;
 
@@ -12,6 +14,7 @@ const Country = ({country, handleVisitedCountry}) => {
         // setVisited(true);
         setVisited(!visited);
     }
+
     
     return (
         <div className={`country ${visited ? 'visited' :'non-visited'}`}>
@@ -22,10 +25,18 @@ const Country = ({country, handleVisitedCountry}) => {
             <p>Capital: {capital}</p>
             <p>Population: {population}</p>
             <p><small>Code: {cca3}</small></p>
-            <button onClick={handleVisitedCountry}>Mark Visited</button>
+            <button onClick={() =>handleVisitedCountry(country)}>Mark Visited</button>
+            <br />
+            <button onClick={() =>handleVisitedFlags(country.flags.png)}>Add Flags</button>
             <button onClick={handleVisited}>{visited ? 'Visited': 'Going'}</button>
             {/* {visited && 'I have visited this country'}  */}
             {visited ? 'I have visited this country' : 'I want to visit'} 
+            <hr />
+            <CountryDetail>
+               country={country}
+               handleVisitedCountry={handleVisitedCountry}
+               handleVisitedFlags={handleVisitedFlags}
+            </CountryDetail>
         </div>
     );
 };
